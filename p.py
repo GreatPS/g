@@ -160,7 +160,6 @@ def spoofer():
     return assembled
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-def login(username, password):
 
 ip = input("Server@GrTools~ Enter Target IP: ")
 port = int("Server@GrTools~ Input Port: ")
