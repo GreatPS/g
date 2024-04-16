@@ -8,8 +8,6 @@ import http.client
 import threading
 import os
 import time
-from colorama import Fore
-
 error = 'Error Cant Connecting | ip : {ip} port : {port}'
 def set_console_title(title):
     ctypes.windll.kernel32.SetConsoleTitleW(title)
