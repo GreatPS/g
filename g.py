@@ -8,32 +8,6 @@ import http.client
 import threading
 import os
 import time
-error = 'Error Cant Connecting | ip : {ip} port : {port}'
-def set_console_title(title):
-    ctypes.windll.kernel32.SetConsoleTitleW(title)
-
-# Tanggal kedaluwarsa (misalnya 7 hari setelah saat ini)
-expiration_date = datetime.datetime.now() + datetime.timedelta(days=7)
-
-# Fungsi untuk memeriksa apakah akun sudah kedaluwarsa
-def is_account_expired():
-    current_date = datetime.datetime.now()
-    if current_date > expiration_date:
-        return True
-    else:
-        return False
-
-# Memeriksa apakah akun sudah kedaluwarsa sebelum menjalankan aksi
-if is_account_expired():
-    print("Akun telah kedaluwarsa. Silakan perbarui.")
-    # Tambahkan kode untuk menampilkan pesan atau melakukan tindakan lain saat akun telah kedaluwarsa
-    exit()
-else:
-    # Lanjutkan dengan eksekusi kode yang ada
-
-    # Penggunaan
-    title = "<> [USER] GRC2@root - Activated > [GRC2] - Expired [{0}] </>".format(expiration_date.strftime("%Y-%m-%d"))
-    set_console_title(title)
 
 tampilan = """
 ╔═══╦═══╗    ╔════╦═══╦═══╦╗──╔═══╗
