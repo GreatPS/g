@@ -8,7 +8,23 @@ import http.client
 import threading
 import os
 import time
+expiration_date = datetime.datetime.now() + datetime.timedelta(days=7)
 
+# Fungsi untuk memeriksa apakah akun sudah kedaluwarsa
+def is_account_expired():
+    current_date = datetime.datetime.now()
+    if current_date > expiration_date:
+        return True
+    else:
+        return False
+
+# Memeriksa apakah akun sudah kedaluwarsa sebelum menjalankan aksi
+if is_account_expired():
+    print("Akun telah kedaluwarsa. Silakan perbarui.")
+    # Tambahkan kode untuk menampilkan pesan atau melakukan tindakan lain saat akun telah kedaluwarsa
+    exit()
+else:
+    # Lanjutkan dengan eksekusi kode yang ada
 tampilan = """
 ╔═══╦═══╗    ╔════╦═══╦═══╦╗──╔═══╗
 ║╔═╗║╔═╗║    ║╔╗╔╗║╔═╗║╔═╗║║──║╔═╗║
